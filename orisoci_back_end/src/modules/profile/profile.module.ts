@@ -4,7 +4,7 @@ import { ProfileService } from './profile.service';
 import { DatabaseModule } from '../database/database.module';
 import { DataSource } from 'typeorm';
 import { UserProfile } from 'src/database/entities/profile.entity';
-import { AuthGuard } from 'src/common/guard/auth.guard';
+import databaseProvider from '../database/database.provider';
 
 @Module({
   controllers: [ProfileController],
@@ -14,7 +14,7 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
       return dataSource.getRepository(UserProfile)
     },
     inject: ['DATA_SOURCE']
-  }],
+  }, databaseProvider],
   imports: [DatabaseModule]
 })
 export class ProfileModule {}

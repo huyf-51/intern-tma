@@ -6,6 +6,7 @@ import { Message } from '../entities/message.entity';
 import { New } from '../entities/new.entity';
 import { Story } from '../entities/story.entity';
 import { Notification } from '../entities/notification.entity'
+import { Connection } from '../entities/connection.entity';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -13,7 +14,7 @@ const AppDataSource = new DataSource({
   ssl: {
     rejectUnauthorized: false,
   },
-  entities: [Account, User, UserProfile, Message, New, Notification, Story],
+  entities: [Account, User, UserProfile, Message, New, Notification, Story, Connection],
   synchronize: false,
   logging: true
 });

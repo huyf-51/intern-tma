@@ -8,11 +8,10 @@ export class AuthGuard implements CanActivate {
   async canActivate(
     context: ExecutionContext,
   ): Promise<boolean> {
-    console.log('auth')
     const request = context.switchToHttp().getRequest();
     const accessToken = request.headers.authorization;
     const result = await this.jwtService.verifyAsync(accessToken)
-
+    request.accountID = result;
     return true;
   }
 }
