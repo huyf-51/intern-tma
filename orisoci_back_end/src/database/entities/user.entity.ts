@@ -22,6 +22,6 @@ export class User {
   email: string;
 
   @OneToOne(() => Account)
-  @JoinColumn({ name: 'accountID'})
+  @JoinColumn({ name: 'accountID' })
   accountID: number;
 }

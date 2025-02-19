@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity('News')
 export class New {
@@ -8,9 +9,7 @@ export class New {
   @Column()
   content: string;
 
-  @Column()
-  image: string;
-
-  @Column()
-  postNewUserID: number;
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({name: 'userID'})
+  userID: number;
 }

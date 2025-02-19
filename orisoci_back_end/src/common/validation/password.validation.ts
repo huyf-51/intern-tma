@@ -1,10 +1,13 @@
-import { ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments } from 'class-validator';
+import {
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+  ValidationArguments,
+} from 'class-validator';
 
 @ValidatorConstraint({ async: false })
 export class CustomIsStrongPassword implements ValidatorConstraintInterface {
   validate(text: string, args: ValidationArguments) {
-
-    return !/(.)\1\1/.test(text); 
+    return !/(.)\1\1/.test(text);
   }
 
   defaultMessage(args: ValidationArguments) {

@@ -12,27 +12,30 @@ import { UserProfile } from 'src/database/entities/profile.entity';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, {
-    provide: 'ACCOUNT_REPOSITORY',
-    useFactory(dataSource: DataSource) {
-      return dataSource.getRepository(Account)
+  providers: [
+    AuthService,
+    {
+      provide: 'ACCOUNT_REPOSITORY',
+      useFactory(dataSource: DataSource) {
+        return dataSource.getRepository(Account);
+      },
+      inject: ['DATA_SOURCE'],
     },
-    inject: ['DATA_SOURCE']
-  }, {
-    provide: 'USER_REPOSITORY',
-    useFactory(dataSource: DataSource) {
-      return dataSource.getRepository(User)
+    {
+      provide: 'USER_REPOSITORY',
+      useFactory(dataSource: DataSource) {
+        return dataSource.getRepository(User);
+      },
+      inject: ['DATA_SOURCE'],
     },
-    inject: ['DATA_SOURCE']
-  },
-  {
-    provide: 'USER_PROFILE_REPOSITORY',
-    useFactory(dataSource: DataSource) {
-      return dataSource.getRepository(UserProfile)
+    {
+      provide: 'USER_PROFILE_REPOSITORY',
+      useFactory(dataSource: DataSource) {
+        return dataSource.getRepository(UserProfile);
+      },
+      inject: ['DATA_SOURCE'],
     },
-    inject: ['DATA_SOURCE']
-  }
-],
+  ],
   imports: [
     JwtModule.register({
       signOptions: {
@@ -40,15 +43,16 @@ import { UserProfile } from 'src/database/entities/profile.entity';
         expiresIn: '1d',
       },
       publicKey: fs.readFileSync(
-        path.join(__dirname, '../../../keys/es256_key.pub'), 'utf-8'
+        path.join(__dirname, '../../../keys/es256_key.pub'),
+        'utf-8',
       ),
       privateKey: fs.readFileSync(
-        path.join(__dirname, '../../../keys/es256_key'), 'utf-8'
+        path.join(__dirname, '../../../keys/es256_key'),
+        'utf-8',
       ),
-      global: true
+      global: true,
     }),
-    DatabaseModule
+    DatabaseModule,
   ],
 })
-
 export class AuthModule {}

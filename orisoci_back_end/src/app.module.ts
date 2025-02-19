@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './modules/user/user.module';
-import { StoryModule } from './modules/story/story.module';
 import { MessageModule } from './modules/message/message.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { NewModule } from './modules/new/new.module';
@@ -18,7 +17,6 @@ import { DatabaseModule } from './modules/database/database.module';
     ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     UserModule,
-    StoryModule,
     MessageModule,
     ProfileModule,
     NewModule,

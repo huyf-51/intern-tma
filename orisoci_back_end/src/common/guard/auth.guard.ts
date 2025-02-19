@@ -5,12 +5,10 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
 
-  async canActivate(
-    context: ExecutionContext,
-  ): Promise<boolean> {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const accessToken = request.headers.authorization;
-    const result = await this.jwtService.verifyAsync(accessToken)
+    const result = await this.jwtService.verifyAsync(accessToken);
     request.accountID = result;
     return true;
   }

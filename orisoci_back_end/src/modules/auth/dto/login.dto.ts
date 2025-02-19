@@ -1,7 +1,7 @@
 import { IsPhoneNumber, IsStrongPassword, Validate } from 'class-validator';
 import { CustomIsStrongPassword } from 'src/common/validation/password.validation';
 
-export class CreateAccountDto {
+export class LoginDto {
   @IsPhoneNumber('VN', { message: 'invalid phone number' })
   phoneNumber: string;
 
@@ -17,8 +17,4 @@ export class CreateAccountDto {
   )
   @Validate(CustomIsStrongPassword)
   password: string;
-
-  firstName: string;
-
-  lastName: string;
 }

@@ -1,4 +1,10 @@
-import { Entity, Column, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+} from 'typeorm';
 import { User } from './user.entity';
 
 @Entity('Connections')
@@ -7,13 +13,13 @@ export class Connection {
   id: number;
 
   @ManyToOne(() => User, (user) => user.id)
-  @JoinColumn({name: 'requesterID'})
+  @JoinColumn({ name: 'requesterID' })
   requesterID: number;
 
   @ManyToOne(() => User, (user) => user.id)
-  @JoinColumn({name: 'receiverID'})
+  @JoinColumn({ name: 'receiverID' })
   receiverID: number;
 
   @Column({ default: false })
-  isConnected: boolean
+  isConnected: boolean;
 }
